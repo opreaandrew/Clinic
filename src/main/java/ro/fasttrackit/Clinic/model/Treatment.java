@@ -13,11 +13,10 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 @Getter
 @Setter
 @RequiredArgsConstructor
-public class Visit {
+public class Treatment {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private long id;
-    private int timeStamp;
-    private String visitReason;
-    private String diagnostic;
+    private String treatmentType;
+    private String prescription;
 }
