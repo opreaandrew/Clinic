@@ -18,7 +18,9 @@ public class Patient {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private long id;
-    private String firstName;
-    private String lastName;
+    private String name;
+    private int age;
+    private Sex sex;
+    private String emergencyContact;
 
 }
