@@ -1,9 +1,7 @@
 package ro.fasttrackit.Clinic_Scheduler.model;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
@@ -13,6 +11,8 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 @Getter
 @Setter
 @RequiredArgsConstructor
+@Builder
+@With
 public class Doctor {
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -23,4 +23,8 @@ public class Doctor {
     @OneToMany
     private List<ScheduledConsult> schedule;
 
+    public ScheduledConsult addConsult(ScheduledConsult newSchedule){
+        schedule.add(newSchedule);
+        return newSchedule;
+    }
 }

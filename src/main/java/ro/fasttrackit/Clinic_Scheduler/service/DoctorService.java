@@ -14,11 +14,26 @@ import java.util.List;
 public class DoctorService {
     private final DoctorRepository doctorRepository;
 
+    //Get all appointments
     public List<ScheduledConsult> getDoctorSchedule(long doctorId) {
         Doctor doctor = doctorRepository.findById(doctorId)
                 .orElseThrow(() -> new EntityNotFoundException("Doctor not found"));
 
         return doctor.getSchedule();
     }
+
+    //Add appointment
+    //Still need validation for overlapping schedules
+    public ScheduledConsult addDoctorSchedule(long doctorId, ScheduledConsult newSchedule) {
+        Doctor doctor = doctorRepository.findById(doctorId)
+                .orElseThrow(() -> new EntityNotFoundException("Doctor not found"));
+
+        return doctor.addConsult(newSchedule);
+    }
+
+    // Get list of all doctors
+    // Get details of specific doctor
+    // Add new Doctor
+    // Update doctor info
 
 }
