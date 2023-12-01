@@ -1,7 +1,7 @@
-package ro.fasttrackit.Clinic.repository;
+package ro.fasttrackit.Clinic_Scheduler.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import ro.fasttrackit.Clinic.model.Visit;
+import ro.fasttrackit.Clinic_Scheduler.model.Visit;
 
 public interface VisitRepository extends JpaRepository<Visit, Long> {
 }

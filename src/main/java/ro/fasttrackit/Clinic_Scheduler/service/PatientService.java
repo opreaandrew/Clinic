@@ -1,9 +1,11 @@
-package ro.fasttrackit.Clinic.service;
+package ro.fasttrackit.Clinic_Scheduler.service;
 
 import org.springframework.stereotype.Service;
-import ro.fasttrackit.Clinic.repository.PatientRepository;
+import ro.fasttrackit.Clinic_Scheduler.repository.PatientRepository;
 
 @Service
 public class PatientService {
     private PatientRepository patientRepository;
+
+
 }

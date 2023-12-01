@@ -1,4 +1,4 @@
-package ro.fasttrackit.Clinic.model;
+package ro.fasttrackit.Clinic_Scheduler.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -22,5 +22,8 @@ public class Patient {
     private int age;
     private Sex sex;
     private String emergencyContact;
+
+    // Link to Visit, somehow
+    private String medicalHistory;
 
 }

@@ -1,4 +1,4 @@
-package ro.fasttrackit.Clinic;
+package ro.fasttrackit.Clinic_Scheduler;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

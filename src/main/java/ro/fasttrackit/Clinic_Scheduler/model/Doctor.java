@@ -1,11 +1,11 @@
-package ro.fasttrackit.Clinic.model;
+package ro.fasttrackit.Clinic_Scheduler.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
 
 import static jakarta.persistence.GenerationType.IDENTITY;
 
@@ -13,11 +13,14 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 @Getter
 @Setter
 @RequiredArgsConstructor
-public class Visit {
+public class Doctor {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private long id;
-    private int timeStamp;
-    private String visitReason;
-    private String diagnostic;
+    private String name;
+    private Specialization specialization;
+
+    @OneToMany
+    private List<ScheduledConsult> schedule;
+
 }
