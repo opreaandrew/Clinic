@@ -3,7 +3,7 @@ package ro.fasttrackit.Clinic_Scheduler.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import ro.fasttrackit.Clinic_Scheduler.model.Doctor;
-import ro.fasttrackit.Clinic_Scheduler.model.ScheduledConsult;
+import ro.fasttrackit.Clinic_Scheduler.model.Visit;
 import ro.fasttrackit.Clinic_Scheduler.service.DoctorService;
 
 import java.util.List;
@@ -15,12 +15,12 @@ public class DoctorController {
     private final DoctorService doctorService;
 
     @GetMapping("/{id}/schedule")
-    List<ScheduledConsult> getDoctorSchedule(@PathVariable long id) {
+    List<Visit> getDoctorSchedule(@PathVariable long id) {
         return doctorService.getDoctorSchedule(id);
     }
 
     @PostMapping("/{id}/schedule")
-    ScheduledConsult addDoctorSchedule(@PathVariable long id, @RequestBody ScheduledConsult newSchedule) {
+    Visit addDoctorSchedule(@PathVariable long id, @RequestBody Visit newSchedule) {
         return doctorService.addDoctorSchedule(id, newSchedule);
     }
 

@@ -5,11 +5,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ro.fasttrackit.Clinic_Scheduler.exception.ResourceNotFoundException;
 import ro.fasttrackit.Clinic_Scheduler.model.Doctor;
-import ro.fasttrackit.Clinic_Scheduler.model.Patient;
-import ro.fasttrackit.Clinic_Scheduler.model.ScheduledConsult;
+import ro.fasttrackit.Clinic_Scheduler.model.Visit;
 import ro.fasttrackit.Clinic_Scheduler.repository.DoctorRepository;
 
-import javax.print.Doc;
 import java.util.List;
 
 @Service
@@ -18,7 +16,7 @@ public class DoctorService {
     private final DoctorRepository doctorRepository;
 
     //Get all appointments
-    public List<ScheduledConsult> getDoctorSchedule(long doctorId) {
+    public List<Visit> getDoctorSchedule(long doctorId) {
         Doctor doctor = doctorRepository.findById(doctorId)
                 .orElseThrow(() -> new EntityNotFoundException("Doctor not found"));
 
@@ -27,11 +25,16 @@ public class DoctorService {
 
     //Add appointment
     //Still need validation for overlapping schedules
-    public ScheduledConsult addDoctorSchedule(long doctorId, ScheduledConsult newSchedule) {
+    public Visit addDoctorSchedule(long doctorId, Visit newSchedule) {
         Doctor doctor = doctorRepository.findById(doctorId)
                 .orElseThrow(() -> new EntityNotFoundException("Doctor not found"));
 
         return doctor.addConsult(newSchedule);
+    }
+
+    //Modify appointment and change status
+    public Visit modifyAppointment(Long doctorId, Visit changeSchedule){
+
     }
 
     // Get list of all doctors

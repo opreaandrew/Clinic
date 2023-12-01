@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class ScheduledConsult {
+public class Visit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -13,6 +13,7 @@ public class ScheduledConsult {
     private LocalDate date;
     private LocalTime startTime;
     private LocalTime endTime;
+    private VisitStatus status;
 
     @ManyToOne
     private Doctor doctor;

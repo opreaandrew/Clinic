@@ -1,10 +1,9 @@
 package ro.fasttrackit.Clinic_Scheduler.service;
 
-import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
 import org.springframework.stereotype.Service;
 import ro.fasttrackit.Clinic_Scheduler.exception.ResourceNotFoundException;
 import ro.fasttrackit.Clinic_Scheduler.model.Patient;
-import ro.fasttrackit.Clinic_Scheduler.model.ScheduledConsult;
+import ro.fasttrackit.Clinic_Scheduler.model.Visit;
 import ro.fasttrackit.Clinic_Scheduler.repository.PatientRepository;
 
 import java.util.List;
@@ -42,7 +41,7 @@ public class PatientService {
     }
 
     //List of visits for specific patient. In ConsultService?
-    public List<ScheduledConsult> getVisitsForPatient(Long id){
+    public List<Visit> getVisitsForPatient(Long id){
         return null;
     }
 

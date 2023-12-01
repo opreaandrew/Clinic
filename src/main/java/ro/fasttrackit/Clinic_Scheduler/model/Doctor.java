@@ -21,9 +21,9 @@ public class Doctor {
     private Specialization specialization;
 
     @OneToMany
-    private List<ScheduledConsult> schedule;
+    private List<Visit> schedule;
 
-    public ScheduledConsult addConsult(ScheduledConsult newSchedule){
+    public Visit addConsult(Visit newSchedule){
         schedule.add(newSchedule);
         return newSchedule;
     }
