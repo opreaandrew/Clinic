@@ -20,7 +20,7 @@ public class PatientService {
 
     //Specific patient
     public Patient getPatientById(Long id) {
-        return patientRepository.getReferenceById(id);
+        return getOrThrow(id);
     }
 
     //Register new patient
