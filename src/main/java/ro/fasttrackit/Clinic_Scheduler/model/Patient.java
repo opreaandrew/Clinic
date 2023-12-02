@@ -1,14 +1,12 @@
 package ro.fasttrackit.Clinic_Scheduler.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
 import java.util.List;
 
+import static jakarta.persistence.EnumType.STRING;
 import static jakarta.persistence.GenerationType.*;
 
 @Builder
@@ -25,10 +23,12 @@ public class Patient {
     private long id;
     private String name;
     private LocalDate birthDate;
-    private Sex sex;
     private String emergencyContact;
 
-    @OneToMany
+    @Enumerated(value = STRING)
+    private Sex sex;
+
+    @OneToMany(mappedBy = "patient")
     private List<Appointment> appointments;
 
 }

@@ -1,10 +1,14 @@
 package ro.fasttrackit.Clinic_Scheduler.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+
+import static jakarta.persistence.EnumType.STRING;
+import static jakarta.persistence.GenerationType.*;
 
 @Builder
 @With
@@ -15,17 +19,21 @@ import java.time.LocalTime;
 @NoArgsConstructor
 public class Appointment {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = IDENTITY)
     private Long id;
 
     private LocalDate date;
     private LocalTime startTime;
     private LocalTime endTime;
+
+    @Enumerated(value = STRING)
     private AppointmentStatus status;
 
+    @JsonIgnore
     @ManyToOne
     private Doctor doctor;
 
+    @JsonIgnore
     @ManyToOne
     private Patient patient;
 

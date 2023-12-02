@@ -5,6 +5,7 @@ import lombok.*;
 
 import java.util.List;
 
+import static jakarta.persistence.EnumType.STRING;
 import static jakarta.persistence.GenerationType.IDENTITY;
 
 @Builder
@@ -20,9 +21,11 @@ public class Doctor {
     @GeneratedValue(strategy = IDENTITY)
     private long id;
     private String name;
+
+    @Enumerated(value = STRING)
     private Specialization specialization;
 
-    @OneToMany
+    @OneToMany(mappedBy = "doctor")
     private List<Appointment> appointments;
 
 }
