@@ -1,16 +1,18 @@
 package ro.fasttrackit.Clinic_Scheduler.service;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ro.fasttrackit.Clinic_Scheduler.exception.ResourceNotFoundException;
 import ro.fasttrackit.Clinic_Scheduler.model.Patient;
-import ro.fasttrackit.Clinic_Scheduler.model.Visit;
+import ro.fasttrackit.Clinic_Scheduler.model.Appointment;
 import ro.fasttrackit.Clinic_Scheduler.repository.PatientRepository;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class PatientService {
-    private PatientRepository patientRepository;
+    private final PatientRepository patientRepository;
 
     //All patients
     public List<Patient> getAllPatients() {
@@ -34,14 +36,13 @@ public class PatientService {
                 .withName(patientToUpdate.getName() == null ? patient.getName() : patientToUpdate.getName())
                 .withBirthDate(patientToUpdate.getBirthDate() == null ? patient.getBirthDate() : patientToUpdate.getBirthDate())
                 .withSex(patientToUpdate.getSex() == null ? patient.getSex() : patientToUpdate.getSex())
-                .withEmergencyContact(patientToUpdate.getEmergencyContact() == null ? patient.getEmergencyContact() : patientToUpdate.getEmergencyContact())
-                .withMedicalHistory(patientToUpdate.getMedicalHistory() == null ? patient.getMedicalHistory() : patientToUpdate.getMedicalHistory());
+                .withEmergencyContact(patientToUpdate.getEmergencyContact() == null ? patient.getEmergencyContact() : patientToUpdate.getEmergencyContact());
 
         return patientRepository.save(updatedPatient);
     }
 
     //List of visits for specific patient. In ConsultService?
-    public List<Visit> getVisitsForPatient(Long id){
+    public List<Appointment> getVisitsForPatient(Long id) {
         return null;
     }
 
@@ -52,7 +53,6 @@ public class PatientService {
         return patientRepository.findById(patientId)
                 .orElseThrow(() -> new ResourceNotFoundException("Could not find Patient with ID: %s".formatted(patientId)));
     }
-
 
 
 }

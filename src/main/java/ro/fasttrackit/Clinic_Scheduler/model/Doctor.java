@@ -7,12 +7,14 @@ import java.util.List;
 
 import static jakarta.persistence.GenerationType.IDENTITY;
 
+@Builder
+@With
 @Entity
 @Getter
 @Setter
-@RequiredArgsConstructor
-@Builder
-@With
+@AllArgsConstructor
+@NoArgsConstructor
+
 public class Doctor {
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -21,10 +23,8 @@ public class Doctor {
     private Specialization specialization;
 
     @OneToMany
-    private List<Visit> schedule;
+    private List<Appointment> appointments;
 
-    public Visit addConsult(Visit newSchedule){
-        schedule.add(newSchedule);
-        return newSchedule;
-    }
 }
+
+

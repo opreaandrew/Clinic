@@ -1,7 +1,7 @@
 package ro.fasttrackit.Clinic_Scheduler.model;
 
-public enum VisitStatus {
+public enum AppointmentStatus {
     SCHEDULED,
-    COMPLETE,
-    CANCELLED
+    COMPLETED,
+    CANCELED
 }

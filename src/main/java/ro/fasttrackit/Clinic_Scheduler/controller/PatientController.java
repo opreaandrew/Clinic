@@ -8,14 +8,14 @@ import ro.fasttrackit.Clinic_Scheduler.service.PatientService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/patient")
+@RequestMapping("/patients")
 @RequiredArgsConstructor
 public class PatientController {
     private final PatientService patientService;
 
     @GetMapping
     List<Patient> getAllPatients() {
-        return null;
+        return patientService.getAllPatients();
     }
 
     @GetMapping("{id}")
