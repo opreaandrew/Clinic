@@ -2,6 +2,7 @@ package ro.fasttrackit.Clinic_Scheduler.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.Cascade;
 
 import java.util.List;
 
@@ -25,7 +26,7 @@ public class Doctor {
     @Enumerated(value = STRING)
     private Specialization specialization;
 
-    @OneToMany(mappedBy = "doctor")
+    @OneToMany(mappedBy = "doctor", cascade = CascadeType.REMOVE)
     private List<Appointment> appointments;
 
 }
