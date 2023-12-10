@@ -53,7 +53,7 @@ public class AppointmentService {
         if (status.equalsIgnoreCase("CANCELED")) {
             appointment.setStatus(AppointmentStatus.CANCELED);
         }
-        return appointment;
+        return appointmentRepository.save(appointment);
     }
 
 }

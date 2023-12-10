@@ -35,7 +35,7 @@ public class AppointmentController {
 
     // PATCH existing appointment
     @PatchMapping("/{id}/{status}")
-    Appointment completedAppointment(@PathVariable Long id, @PathVariable String status){
+    Appointment statusChange(@PathVariable Long id, @PathVariable String status){
         return appointmentService.changeStatus(id, status);
     }
 }
