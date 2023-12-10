@@ -10,6 +10,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/appointments")
 @RequiredArgsConstructor
+@CrossOrigin(value = "http://localhost:4200")
+
 public class AppointmentController {
     private final AppointmentService appointmentService;
 
@@ -32,7 +34,7 @@ public class AppointmentController {
     }
 
     // PATCH existing appointment
-    @PatchMapping("/status/{id}/{status}")
+    @PatchMapping("/{id}/{status}")
     Appointment completedAppointment(@PathVariable Long id, @PathVariable String status){
         return appointmentService.changeStatus(id, status);
     }
