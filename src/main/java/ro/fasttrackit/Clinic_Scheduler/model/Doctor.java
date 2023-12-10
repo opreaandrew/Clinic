@@ -1,5 +1,6 @@
 package ro.fasttrackit.Clinic_Scheduler.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.Cascade;
@@ -26,6 +27,7 @@ public class Doctor {
     @Enumerated(value = STRING)
     private Specialization specialization;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "doctor", cascade = CascadeType.REMOVE)
     private List<Appointment> appointments;
 

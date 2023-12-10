@@ -29,11 +29,9 @@ public class Appointment {
     @Enumerated(value = STRING)
     private AppointmentStatus status;
 
-    @JsonIgnore
     @ManyToOne
     private Doctor doctor;
 
-    @JsonIgnore
     @ManyToOne
     private Patient patient;
 

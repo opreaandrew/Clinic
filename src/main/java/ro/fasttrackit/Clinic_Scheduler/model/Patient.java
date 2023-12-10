@@ -1,5 +1,6 @@
 package ro.fasttrackit.Clinic_Scheduler.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -28,6 +29,7 @@ public class Patient {
     @Enumerated(value = STRING)
     private Sex sex;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "patient")
     private List<Appointment> appointments;
 
