@@ -41,7 +41,7 @@ public class PatientService {
         return patientRepository.save(updatedPatient);
     }
 
-    //List of visits for specific patient. In ConsultService?
+    //List of visits for specific patient. In AppointmentService?
     public List<Appointment> getVisitsForPatient(Long id) {
         return null;
     }

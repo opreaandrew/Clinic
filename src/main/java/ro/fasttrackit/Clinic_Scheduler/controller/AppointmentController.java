@@ -28,7 +28,7 @@ public class AppointmentController {
     }
 
     // POST new appointment
-    @PostMapping("/new/")
+    @PostMapping
     Appointment newAppointment(@RequestBody Appointment appointment){
         return appointmentService.newAppointment(appointment);
     }
