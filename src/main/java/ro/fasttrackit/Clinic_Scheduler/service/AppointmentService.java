@@ -3,10 +3,7 @@ package ro.fasttrackit.Clinic_Scheduler.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ro.fasttrackit.Clinic_Scheduler.exception.ResourceNotFoundException;
-import ro.fasttrackit.Clinic_Scheduler.model.Appointment;
-import ro.fasttrackit.Clinic_Scheduler.model.AppointmentStatus;
-import ro.fasttrackit.Clinic_Scheduler.model.Doctor;
-import ro.fasttrackit.Clinic_Scheduler.model.Patient;
+import ro.fasttrackit.Clinic_Scheduler.model.*;
 import ro.fasttrackit.Clinic_Scheduler.repository.AppointmentRepository;
 import ro.fasttrackit.Clinic_Scheduler.repository.DoctorRepository;
 import ro.fasttrackit.Clinic_Scheduler.repository.PatientRepository;
@@ -32,12 +29,18 @@ public class AppointmentService {
     }
 
     //New appointment, need validation for overlapping appointments
-    public Appointment newAppointment(Appointment appointment) {
-        Patient patient = patientRepository.findById(appointment.getPatient().getId())
+    public Appointment newAppointment(NewAppointment newAppointment) {
+        Patient patient = patientRepository.findById(newAppointment.getPatient())
                 .orElseThrow(() -> new ResourceNotFoundException("Patient not found"));
-        Doctor doctor = doctorRepository.findById(appointment.getDoctor().getId())
+        Doctor doctor = doctorRepository.findById(newAppointment.getDoctor())
                 .orElseThrow(() -> new ResourceNotFoundException("Doctor not found"));
-
+        Appointment appointment = new Appointment()
+                .withDate(newAppointment.getDate())
+                .withStartTime(newAppointment.getStartTime())
+                .withEndTime(newAppointment.getEndTime())
+                .withStatus(newAppointment.getStatus())
+                .withDoctor(doctor)
+                .withPatient(patient);
         return appointmentRepository.save(appointment);
 
     }

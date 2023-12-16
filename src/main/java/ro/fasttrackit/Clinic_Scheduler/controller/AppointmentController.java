@@ -3,6 +3,7 @@ package ro.fasttrackit.Clinic_Scheduler.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import ro.fasttrackit.Clinic_Scheduler.model.Appointment;
+import ro.fasttrackit.Clinic_Scheduler.model.NewAppointment;
 import ro.fasttrackit.Clinic_Scheduler.service.AppointmentService;
 
 import java.util.List;
@@ -29,8 +30,8 @@ public class AppointmentController {
 
     // POST new appointment
     @PostMapping
-    Appointment newAppointment(@RequestBody Appointment appointment){
-        return appointmentService.newAppointment(appointment);
+    Appointment newAppointment(@RequestBody NewAppointment newAppointment){
+        return appointmentService.newAppointment(newAppointment);
     }
 
     // PATCH existing appointment
