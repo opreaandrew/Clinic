@@ -36,7 +36,7 @@
 ### 5. Modelul de Date:
 - Clasele pentru `Appointment`, `Doctor`, `Patient`, `NewAppointment`, `AppointmentStatus`, `Sex`, `Specialization`.
 
-### 6. Repositoare:
+### 6. Repositories:
 - Interfețe pentru `AppointmentRepository`, `DoctorRepository`, `PatientRepository` care extind JpaRepository.
 
 ### 7. Servicii:
