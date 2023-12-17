@@ -15,12 +15,10 @@ import java.util.List;
 public class DoctorService {
     private final DoctorRepository doctorRepository;
 
-    // Get list of all doctors
     public List<Doctor> getAllDoctors(){
         return doctorRepository.findAll();
     }
 
-    //Get all appointments for doctor
     public List<Appointment> getDoctorSchedule(long doctorId) {
         Doctor doctor = doctorRepository.findById(doctorId)
                 .orElseThrow(() -> new EntityNotFoundException("Doctor not found"));
@@ -28,17 +26,14 @@ public class DoctorService {
         return doctor.getAppointments();
     }
 
-    // Get details of specific doctor
     public Doctor getDoctor(Long id){
         return getOrThrow(id);
     }
 
-    // Add new Doctor
     public Doctor addDoctor(Doctor doctor){
         return doctorRepository.save(doctor);
     }
 
-    // Update doctor info
     public Doctor updateDoctor(Long id, Doctor doctorToUpdate) {
         Doctor doctor = getOrThrow(id);
         Doctor updatedDoctor = doctor
@@ -48,7 +43,6 @@ public class DoctorService {
         return doctorRepository.save(updatedDoctor);
     }
 
-    //Fire doctor
     public Doctor fireDoctor(Long id){
         Doctor fired = getOrThrow(id);
         doctorRepository.delete(fired);

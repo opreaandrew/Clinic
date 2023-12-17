@@ -17,18 +17,15 @@ public class AppointmentService {
     private final PatientRepository patientRepository;
     private final DoctorRepository doctorRepository;
 
-    //Get all appointments
     public List<Appointment> getAllAppointments() {
         return appointmentRepository.findAll();
     }
 
-    //Get specific appointment
     public Appointment getSpecificAppointment(Long id) {
         return appointmentRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Appointment doesn't exist"));
     }
 
-    //New appointment, need validation for overlapping appointments
     public Appointment newAppointment(NewAppointment newAppointment) {
         Patient patient = patientRepository.findById(newAppointment.getPatient())
                 .orElseThrow(() -> new ResourceNotFoundException("Patient not found"));
@@ -45,7 +42,6 @@ public class AppointmentService {
 
     }
 
-    //Change status
     public Appointment changeStatus(Long id, String status) {
         Appointment appointment = appointmentRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Appointment not found"));

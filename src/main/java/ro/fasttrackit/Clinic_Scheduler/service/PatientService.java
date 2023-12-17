@@ -14,22 +14,18 @@ import java.util.List;
 public class PatientService {
     private final PatientRepository patientRepository;
 
-    //All patients
     public List<Patient> getAllPatients() {
         return patientRepository.findAll();
     }
 
-    //Specific patient
     public Patient getPatientById(Long id) {
         return getOrThrow(id);
     }
 
-    //Register new patient
     public Patient newPatient(Patient newPatient) {
         return patientRepository.save(newPatient);
     }
 
-    // Update patient
     public Patient updatePatient(Long id, Patient patientToUpdate) {
         Patient patient = getOrThrow(id);
         Patient updatedPatient = patient
@@ -41,18 +37,8 @@ public class PatientService {
         return patientRepository.save(updatedPatient);
     }
 
-    //List of visits for specific patient. In AppointmentService?
-    public List<Appointment> getVisitsForPatient(Long id) {
-        return null;
-    }
-
-    // Delete patient for GDPR reasons ?
-
-
     private Patient getOrThrow(Long patientId) {
         return patientRepository.findById(patientId)
                 .orElseThrow(() -> new ResourceNotFoundException("Could not find Patient with ID: %s".formatted(patientId)));
     }
-
-
 }

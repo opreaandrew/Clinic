@@ -17,24 +17,20 @@ public class AppointmentController {
     private final AppointmentService appointmentService;
 
     @GetMapping
-    // GET all appointments
     List<Appointment> getAllAppointments(){
         return appointmentService.getAllAppointments();
     }
 
-    // GET specific appointment
     @GetMapping("{id}")
     Appointment getAppointment(@PathVariable Long id){
         return appointmentService.getSpecificAppointment(id);
     }
 
-    // POST new appointment
     @PostMapping
     Appointment newAppointment(@RequestBody NewAppointment newAppointment){
         return appointmentService.newAppointment(newAppointment);
     }
 
-    // PATCH existing appointment
     @PatchMapping("/{id}/{status}")
     Appointment statusChange(@PathVariable Long id, @PathVariable String status){
         return appointmentService.changeStatus(id, status);
