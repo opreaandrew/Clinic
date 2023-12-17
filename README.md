@@ -19,6 +19,7 @@
   - `POST /doctors`: Adaugă un nou medic.
   - `PATCH /doctors/{id}`: Actualizează detaliile unui medic.
   - `DELETE /doctors/{id}`: Concediază un medic.
+- **Cross-Origin Resource Sharing (CORS):** Configurat pentru a permite accesul de pe `http://localhost:4200`.
 
 ### 3. Controller pentru Pacienți (`PatientController`):
 
@@ -27,6 +28,7 @@
   - `GET /patients/{id}`: Returnează detalii despre un pacient specific.
   - `POST /patients`: Adaugă un nou pacient.
   - `PATCH /patients/{id}`: Actualizează detaliile unui pacient.
+ - **Cross-Origin Resource Sharing (CORS):** Configurat pentru a permite accesul de pe `http://localhost:4200`.
 
 ### 4. Excepții (`ResourceNotFoundException`):
 - O clasă de excepții personalizată pentru gestionarea situațiilor în care o resursă nu poate fi găsită.
