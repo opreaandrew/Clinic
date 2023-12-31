@@ -8,6 +8,8 @@ import ro.fasttrackit.Clinic_Scheduler.repository.AppointmentRepository;
 import ro.fasttrackit.Clinic_Scheduler.repository.DoctorRepository;
 import ro.fasttrackit.Clinic_Scheduler.repository.PatientRepository;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 @Service
@@ -29,8 +31,13 @@ public class AppointmentService {
     public Appointment newAppointment(NewAppointment newAppointment) {
         Patient patient = patientRepository.findById(newAppointment.getPatient())
                 .orElseThrow(() -> new ResourceNotFoundException("Patient not found"));
+
         Doctor doctor = doctorRepository.findById(newAppointment.getDoctor())
                 .orElseThrow(() -> new ResourceNotFoundException("Doctor not found"));
+
+        validateDoctorAppointmentOverlap(doctor, newAppointment.getDate(), newAppointment.getStartTime(), newAppointment.getEndTime());
+        validatePatientAppointmentOverlap(patient, newAppointment.getDate(), newAppointment.getStartTime(), newAppointment.getEndTime());
+
         Appointment appointment = new Appointment()
                 .withDate(newAppointment.getDate())
                 .withStartTime(newAppointment.getStartTime())
@@ -38,8 +45,8 @@ public class AppointmentService {
                 .withStatus(newAppointment.getStatus())
                 .withDoctor(doctor)
                 .withPatient(patient);
-        return appointmentRepository.save(appointment);
 
+        return appointmentRepository.save(appointment);
     }
 
     public Appointment changeStatus(Long id, String status) {
@@ -53,6 +60,25 @@ public class AppointmentService {
             appointment.setStatus(AppointmentStatus.CANCELED);
         }
         return appointmentRepository.save(appointment);
+    }
+
+
+    private void validateDoctorAppointmentOverlap(Doctor doctor, LocalDate newDate, LocalTime newStartTime, LocalTime newEndTime) {
+        List<Appointment> doctorAppointments = appointmentRepository.findByDoctorAndDate(doctor, newDate);
+        for (Appointment appointment : doctorAppointments) {
+            if (appointment.getEndTime().isAfter(newStartTime) && newEndTime.isAfter(appointment.getStartTime())) {
+                throw new RuntimeException("Doctor schedule overlap detected");
+            }
+        }
+    }
+
+    private void validatePatientAppointmentOverlap(Patient patient, LocalDate newDate, LocalTime newStartTime, LocalTime newEndTime) {
+        List<Appointment> patientAppointments = appointmentRepository.findByPatientAndDate(patient, newDate);
+        for (Appointment appointment : patientAppointments) {
+            if (appointment.getEndTime().isAfter(newStartTime) && newEndTime.isAfter(appointment.getStartTime())) {
+                throw new RuntimeException("Patient schedule overlap detected");
+            }
+        }
     }
 
 }
